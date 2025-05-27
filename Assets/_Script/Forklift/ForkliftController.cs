@@ -15,6 +15,7 @@ public class ForkliftController : MonoBehaviour
     public XRKnob knob;                       // Steering knob
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
+  
 
     private Rigidbody rb;
     private bool moveForward = false;
@@ -25,6 +26,7 @@ public class ForkliftController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
     }
 
     void Update()
@@ -62,12 +64,12 @@ public class ForkliftController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    { 
         Vector3 moveDirection = Vector3.zero;
 
-        if (moveForward && !moveBackward)
+        if (!isReverseGearOn && moveForward == true)
             moveDirection = transform.forward;
-        else if (moveBackward && !moveForward)
+        else if (isReverseGearOn && moveBackward == true)
             moveDirection = -transform.forward;
 
         if (moveDirection != Vector3.zero)
