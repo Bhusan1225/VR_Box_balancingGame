@@ -3,20 +3,24 @@ using UnityEngine;
 public class LiftMovement : MonoBehaviour
 {
     [SerializeField] Transform lift;
-    //[SerializeField] Transform originallift;
+    [SerializeField] ForkliftEngineController engineController;
     [SerializeField] float moveIncrement = 0.1f;
 
+    [Header("Horizontal Limits (X Axis)")]
+    [SerializeField] float maxRightX;
+    [SerializeField] float maxLeftX;
+
     [Header("Vertical Limits (Y Axis)")]
-    //[SerializeField] float minY;
     [SerializeField] float maxY;
 
     [Header("Horizontal Limits (Z Axis)")]
-    //[SerializeField] float minZ;
     [SerializeField] float maxZ;
+
+   
 
     Vector3 orgPosition;
 
-    bool front;
+ 
     // Called by input when holding movement
 
     private void Start()
@@ -44,13 +48,13 @@ public class LiftMovement : MonoBehaviour
         if (value > 0.8f)
         {
             LiftFront();
-            front = true;
+            
         }
     }
 
     public void LiftBackWhilePressed(float value)
     {
-        if (value > 0.8f && front == true)
+        if (value > 0.8f )
         {
             LiftBack();
         }
@@ -69,45 +73,57 @@ public class LiftMovement : MonoBehaviour
 
     public void LiftUp() // done
     {
-        Vector3 direction = lift.parent.up;
-        Vector3 newPosition = lift.position + direction * moveIncrement;
-
-        if (newPosition.y <= orgPosition.y + maxY)
+        if (engineController.GetForkliftEnginePower() == true)
         {
-            lift.position = newPosition;
+            Vector3 direction = lift.parent.up;
+            Vector3 newPosition = lift.position + direction * moveIncrement;
+
+            if (newPosition.y <= orgPosition.y + maxY)
+            {
+                lift.position = newPosition;
+            }
         }
     }
 
     public void LiftDown() //done
     {
-        Vector3 direction = -lift.parent.up;
-        Vector3 newPosition = lift.position + direction * moveIncrement;
-
-        if (newPosition.y >= orgPosition.y)
+        if (engineController.GetForkliftEnginePower() == true)
         {
-            lift.position = newPosition;
+            Vector3 direction = -lift.parent.up;
+            Vector3 newPosition = lift.position + direction * moveIncrement;
+
+            if (newPosition.y >= orgPosition.y)
+            {
+                lift.position = newPosition;
+            }
         }
     }
 
     public void LiftFront() // done
     {
-        Vector3 direction = lift.parent.forward;
-        Vector3 newPosition = lift.position + direction * moveIncrement;
-
-        if (newPosition.z <= orgPosition.z +maxZ)
+        if (engineController.GetForkliftEnginePower() == true)
         {
-            lift.position = newPosition;
+            Vector3 direction = lift.parent.forward;
+            Vector3 newPosition = lift.position + direction * moveIncrement;
+
+            if (newPosition.z <= orgPosition.z + maxZ)
+            {
+                lift.position = newPosition;
+            }
         }
     }
 
     public void LiftBack() //done
     {
-        Vector3 direction = -lift.parent.forward;
-        Vector3 newPosition = lift.position + direction * moveIncrement;
-
-        if (newPosition.z >= orgPosition.z )
+        if (engineController.GetForkliftEnginePower() == true)
         {
-            lift.position = newPosition;
+            Vector3 direction = -lift.parent.forward;
+            Vector3 newPosition = lift.position + direction * moveIncrement;
+
+            if (newPosition.z >= orgPosition.z)
+            {
+                lift.position = newPosition;
+            }
         }
     }
 
@@ -115,14 +131,39 @@ public class LiftMovement : MonoBehaviour
 
     public void MoveLeft()
     {
-        Vector3 direction = -lift.parent.right;
-        lift.position += direction * moveIncrement;
+        if (engineController.GetForkliftEnginePower() == true)
+        {
+            Vector3 direction = -lift.parent.right;
+            Vector3 newPosition = lift.position + direction * moveIncrement;
+            if (newPosition.x <= orgPosition.x + maxLeftX)
+            {
+                lift.position = newPosition;
+            }
+        }
     }
+
+    //public void MoveToOrigin()
+    //{
+    //    Vector3 direction = lift.parent.right;
+    //    Vector3 newPosition = lift.position + direction * moveIncrement;
+    //    if (newPosition.x <= orgPosition.x)
+    //    {
+    //        lift.position = newPosition;
+    //    }
+    //}
 
     public void MoveRight()
     {
-        Vector3 direction = lift.parent.right;
-        lift.position += direction * moveIncrement;
+        if (engineController.GetForkliftEnginePower() == true)
+        {
+            Vector3 direction = lift.parent.right;
+            Vector3 newPosition = lift.position + direction * moveIncrement;
+
+            if (newPosition.x <= orgPosition.x + maxRightX)
+            {
+                lift.position = newPosition;
+            }
+        }
     }
 
 }

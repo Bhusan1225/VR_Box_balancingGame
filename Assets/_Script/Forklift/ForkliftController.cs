@@ -8,7 +8,7 @@ using UnityEngine.XR.Content.Interaction;
 public class ForkliftController : MonoBehaviour
 {
 
-
+    [SerializeField] ForkliftEngineController engineController;
 
     public InputActionReference rightTrigger; // Forward (right hand)
     public InputActionReference leftTrigger;  // Backward (left hand)
@@ -19,10 +19,7 @@ public class ForkliftController : MonoBehaviour
 
     [Header("Lever")]
     public XRLever lever;
-    //public GearStatus gearStaus = GearStatus.nutral;
     
-     
-
     private Rigidbody rb;
     private bool moveForward = false;
     private bool moveBackward = false;
@@ -35,45 +32,41 @@ public class ForkliftController : MonoBehaviour
        
     }
 
-    public void setReverseMode( bool reverseMode)
+     void Update()
     {
-        isReverseGearOn = reverseMode;
-    }
-
-
-    void Update()
-    {
-        handleGearStatus();
-        if (!isReverseGearOn )
+        if (engineController.GetForkliftEnginePower())
         {
-            // Right trigger = forward
-            if (rightTrigger.action.WasPressedThisFrame())
-                moveForward = true;
-            if (rightTrigger.action.WasReleasedThisFrame())
-                moveForward = false;
+            handleGearStatus();
+            if (!isReverseGearOn)
+            {
+                // Right trigger = forward
+                if (rightTrigger.action.WasPressedThisFrame())
+                    moveForward = true;
+                if (rightTrigger.action.WasReleasedThisFrame())
+                    moveForward = false;
 
-            // Left trigger = forward
-            if (leftTrigger.action.WasPressedThisFrame())
-                moveForward = true;
-            if (leftTrigger.action.WasReleasedThisFrame())
-                moveForward = false;
+                // Left trigger = forward
+                if (leftTrigger.action.WasPressedThisFrame())
+                    moveForward = true;
+                if (leftTrigger.action.WasReleasedThisFrame())
+                    moveForward = false;
+            }
+            else if (isReverseGearOn)
+            {
+                // Right trigger = backword
+                if (rightTrigger.action.WasPressedThisFrame())
+                    moveBackward = true;
+                if (rightTrigger.action.WasReleasedThisFrame())
+                    moveBackward = false;
+
+                // Left trigger = backward
+                if (leftTrigger.action.WasPressedThisFrame())
+                    moveBackward = true;
+                if (leftTrigger.action.WasReleasedThisFrame())
+                    moveBackward = false;
+            }
+
         }
-        else if (isReverseGearOn )
-        {
-            // Right trigger = backword
-            if (rightTrigger.action.WasPressedThisFrame())
-                moveBackward = true;
-            if (rightTrigger.action.WasReleasedThisFrame())
-                moveBackward = false;
-
-            // Left trigger = backward
-            if (leftTrigger.action.WasPressedThisFrame())
-                moveBackward = true;
-            if (leftTrigger.action.WasReleasedThisFrame())
-                moveBackward = false;
-        }
-
-       
     }
 
     public void handleGearStatus()
