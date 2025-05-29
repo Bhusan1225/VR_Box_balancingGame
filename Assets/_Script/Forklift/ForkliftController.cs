@@ -12,26 +12,39 @@ public class ForkliftController : MonoBehaviour
 
     public InputActionReference rightTrigger; // Forward (right hand)
     public InputActionReference leftTrigger;  // Backward (left hand)
-    public XRKnob knob;                       // Steering knob
+    public XRKnob knob;  
+    
     public float moveSpeed = 5f;
     public float rotationSpeed = 50f;
-  
+
+    [Header("Lever")]
+    public XRLever lever;
+    //public GearStatus gearStaus = GearStatus.nutral;
+    
+     
 
     private Rigidbody rb;
     private bool moveForward = false;
     private bool moveBackward = false;
 
-    private bool isReverseGearOn = false;
+    public  bool isReverseGearOn;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+       
     }
+
+    public void setReverseMode( bool reverseMode)
+    {
+        isReverseGearOn = reverseMode;
+    }
+
 
     void Update()
     {
-        if (!isReverseGearOn)
+        handleGearStatus();
+        if (!isReverseGearOn )
         {
             // Right trigger = forward
             if (rightTrigger.action.WasPressedThisFrame())
@@ -39,15 +52,15 @@ public class ForkliftController : MonoBehaviour
             if (rightTrigger.action.WasReleasedThisFrame())
                 moveForward = false;
 
-            // Left trigger = backward
+            // Left trigger = forward
             if (leftTrigger.action.WasPressedThisFrame())
                 moveForward = true;
             if (leftTrigger.action.WasReleasedThisFrame())
                 moveForward = false;
         }
-        else
+        else if (isReverseGearOn )
         {
-            // Right trigger = forward
+            // Right trigger = backword
             if (rightTrigger.action.WasPressedThisFrame())
                 moveBackward = true;
             if (rightTrigger.action.WasReleasedThisFrame())
@@ -60,6 +73,21 @@ public class ForkliftController : MonoBehaviour
                 moveBackward = false;
         }
 
+       
+    }
+
+    public void handleGearStatus()
+    {
+
+        float gearAngle =lever.value ? 1 : 0;
+        if (gearAngle == 0)
+        {
+            isReverseGearOn = false;
+        }
+        else if (gearAngle == 1)
+        {
+            isReverseGearOn = true;
+        }
 
     }
 
@@ -67,11 +95,13 @@ public class ForkliftController : MonoBehaviour
     { 
         Vector3 moveDirection = Vector3.zero;
 
-        if (!isReverseGearOn && moveForward == true)
-            moveDirection = transform.forward;
-        else if (isReverseGearOn && moveBackward == true)
-            moveDirection = -transform.forward;
+            if (!isReverseGearOn && moveForward == true)
+                moveDirection = transform.forward;
+            else if (isReverseGearOn && moveBackward == true)
+                moveDirection = -transform.forward;
+        
 
+        //Movement
         if (moveDirection != Vector3.zero)
         {
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);

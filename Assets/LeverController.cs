@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.XR.Content.Interaction;
 
 public class LeverController : MonoBehaviour
 {
-    public Transform lever;
-    [SerializeField] private float forwardBackwardTilt = 0;
+    public XRLever lever;
+    public ForkliftController forklift;
+
+    public GearStatus gearStaus = GearStatus.nutral;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -13,19 +19,21 @@ public class LeverController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        forwardBackwardTilt =lever.rotation.eulerAngles.y;
-        if (forwardBackwardTilt > 355 && forwardBackwardTilt >290)
+
+        float gearStaus = lever.value ? 1 : 0;
+
+
+
+        if(gearStaus == 1)
         {
-            forwardBackwardTilt =Mathf.Abs(forwardBackwardTilt- 360);
-            Debug.Log("backward"+forwardBackwardTilt);
+            forklift.setReverseMode(false);
         }
-        else if (forwardBackwardTilt > 5 && forwardBackwardTilt < 74)
+        else
         {
-            Debug.Log("forward" + forwardBackwardTilt);
+            forklift.setReverseMode(true);
         }
-       
-        }
+    }
 }
