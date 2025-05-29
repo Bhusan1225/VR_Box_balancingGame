@@ -187,6 +187,7 @@ namespace UnityEngine.XR.Content.Interaction
 
         void UpdatePress()
         {
+            m_BaseButtonPosition = m_Button.position; // this will update the position when we change the position
             var minimumHeight = 0.0f;
 
             if (m_ToggleButton && m_Toggled)
