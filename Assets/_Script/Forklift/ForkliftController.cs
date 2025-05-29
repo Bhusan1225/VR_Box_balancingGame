@@ -34,7 +34,7 @@ public class ForkliftController : MonoBehaviour
 
      void Update()
     {
-        if (engineController.GetForkliftEnginePower())
+        if (engineController.GetForkliftEnginePower() == true)
         {
             handleGearStatus();
             if (!isReverseGearOn)
