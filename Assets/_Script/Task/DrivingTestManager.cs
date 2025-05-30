@@ -24,11 +24,14 @@ public class DrivingTestManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI achivementTimingText;
     [SerializeField] TextMeshProUGUI taskScoreText;
     [SerializeField] GameObject achivementUIPopup;
+    //[SerializeField] Image timeBadgeImageHolder;
+    //[SerializeField] Image scoreBadgeImageHolder;
     [SerializeField] Image trofyImageHolder;
-    [SerializeField] Image goldTrofyImageUI;
-    [SerializeField] Image silverTrofyImageUI;
-    [SerializeField] Image bronzeTrofyImageUI;
-    [SerializeField] Image certificateImageUI;
+
+    [SerializeField] Image goldTrofyImage;
+    [SerializeField] Image silverTrofyImage;
+    [SerializeField] Image bronzeTrofyImage;
+    [SerializeField] Image certificateImage;
     private void Start()
     {
         achivementUIPopup.SetActive(false);
@@ -73,32 +76,37 @@ public class DrivingTestManager : MonoBehaviour
             }
 
             achivementUIPopup.SetActive(true);
-            achivementTimingText.text = stopwatch.FormatTime(stopwatch.GetElapsedTime());
-            taskScoreText.text = taskManager.GetTaskScore().ToString();
+            achivementTimingText.text = "Time:" + stopwatch.FormatTime(stopwatch.GetElapsedTime());
+            taskScoreText.text = "Score: "  + taskManager.GetTaskScore().ToString();
 
-            //check time, check task points, check the forklift Condition
-            if (stopwatch.GetElapsedTime() <= 70f && taskManager.CheckWinningScore() <= 10)
+            float elapsedTime = stopwatch.GetElapsedTime();
+            int score = taskManager.CheckWinningScore();
+
+            // GOLD: Time <= 70s AND Score <= 10
+            if (elapsedTime <= 70f && score <= 10)
             {
-                trofyImageHolder.sprite = goldTrofyImageUI.sprite;
-                Debug.Log("Congrats you got gold");
+                trofyImageHolder.sprite = goldTrofyImage.sprite;
+                Debug.Log("Congrats! You got Gold.");
             }
-            else if (stopwatch.GetElapsedTime() >= 70f && stopwatch.GetElapsedTime() <= 120f &&
-                    taskManager.CheckWinningScore() >= 10 && taskManager.CheckWinningScore() <= 20)
+            // SILVER: Time between 70-120s AND Score <= 20
+            else if (elapsedTime > 70f && elapsedTime <= 120f && score <= 20)
             {
-                trofyImageHolder.sprite = silverTrofyImageUI.sprite;
-                Debug.Log("Congrats you got Silver");
+                trofyImageHolder.sprite = silverTrofyImage.sprite;
+                Debug.Log("Congrats! You got Silver.");
             }
-            else if (stopwatch.GetElapsedTime() >= 120f && stopwatch.GetElapsedTime() <= 240f &&
-                     taskManager.CheckWinningScore() >= 20 && taskManager.CheckWinningScore() <= 30)
+            // BRONZE: Time between 120-240s AND Score <= 30
+            else if (elapsedTime > 120f && elapsedTime <= 240f && score <= 30)
             {
-                trofyImageHolder.sprite = bronzeTrofyImageUI.sprite;
-                Debug.Log("Congrats you got Bronze");
+                trofyImageHolder.sprite = bronzeTrofyImage.sprite;
+                Debug.Log("Congrats! You got Bronze.");
             }
+            // CERTIFICATE: Anything worse
             else
             {
-                trofyImageHolder.sprite = certificateImageUI.sprite;
-                Debug.Log("Better luck next time");
+                trofyImageHolder.sprite = certificateImage.sprite;
+                Debug.Log("Better luck next time!");
             }
+
         }
     }
 }
