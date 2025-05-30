@@ -17,6 +17,11 @@ public class Stopwatch : MonoBehaviour
         }
     }
 
+    public float GetElapsedTime()
+    {
+        return elapsedTime;
+    }
+
     public void StartStopwatch()
     {
         isRunning = true;
@@ -34,7 +39,7 @@ public class Stopwatch : MonoBehaviour
         stopwatchText.text = "00:00:00";
     }
 
-    string FormatTime(float time)
+    public string FormatTime(float time)
     {
         int minutes = Mathf.FloorToInt(time / 60f);
         int seconds = Mathf.FloorToInt(time % 60f);

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484cbb60a96e4824b952f355778f47d7, type: 3}
   m_Name: Task6
   m_EditorClassIdentifier: 
-  taskName: 
-  taskInstruction: 
+  taskName: Do Parking
+  taskInstruction: 'Enter the full forklift in a proper way '

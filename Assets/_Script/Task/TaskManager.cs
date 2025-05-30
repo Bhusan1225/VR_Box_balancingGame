@@ -10,11 +10,28 @@ public class TaskManager : MonoBehaviour
     public TextMeshProUGUI taskText;
     public TextMeshProUGUI instructionText;
     public int currentIndex = 0;
-    public int score = 50;
+    public int taskScore;
+    public int taskTotalScore;
 
     void Start()
     {
+        taskTotalScore = taskList.Count * 10;
+        taskScore = taskTotalScore;
         ShowCurrentTask();
+    }
+
+    public int GetTaskScore()
+    {
+        return taskScore;
+    }
+    public int GetTaskTotalScore()
+    {
+        return taskTotalScore;
+    }
+
+    public int CheckWinningScore()
+    {
+        return  taskTotalScore - taskScore;
     }
 
     public void TryCompleteTask(ForkliftTask attemptedTask)
@@ -30,7 +47,7 @@ public class TaskManager : MonoBehaviour
         {
            
             Debug.LogWarning("Wrong task order! Penalty applied.");
-            score -= 10;
+            taskScore -= 10;
         }
     }
 
@@ -39,10 +56,11 @@ public class TaskManager : MonoBehaviour
         if (currentIndex < taskList.Count)
         {
             taskText.text = "Current Task: " + taskList[currentIndex].taskName;
+            instructionText.text = "Hint: " + taskList[currentIndex].taskInstruction;
         }
         else
         {
-            taskText.text = "✅ All tasks completed!";
+            taskText.text = "All tasks completed!";
         }
     }
 }

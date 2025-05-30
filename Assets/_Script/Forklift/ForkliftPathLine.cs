@@ -10,8 +10,8 @@ public class ForkliftPathLine : MonoBehaviour
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startWidth = 5f;
-        lineRenderer.endWidth = 5f;
+        lineRenderer.startWidth = 3f;
+        lineRenderer.endWidth = 3f;
     }
 
     void Update()
