@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class LiftMovement : MonoBehaviour
 {
+
+    /// <summary>
+    /// This scripts handles the  movement of the lift 
+    /// </summary>
     [SerializeField] Transform lift;
     [SerializeField] Transform originalLift;
 
@@ -25,15 +29,13 @@ public class LiftMovement : MonoBehaviour
     private bool task7Completed = false;
 
     public Vector3 orgPosition;
-    
-
 
     private void Update()
     {
         orgPosition = originalLift.position;
         
     }
-    public void LiftUpWhilePressed(float value)
+    public void LiftUpWhilePressed(float value) //This function is called in the event of buttons - Up
     {
         if (value > 0.8f)
         {
@@ -41,7 +43,7 @@ public class LiftMovement : MonoBehaviour
         }
     }
 
-    public void LiftDownWhilePressed(float value)
+    public void LiftDownWhilePressed(float value) //This function is called in the event of buttons - Down
     {
         if (value > 0.8f)
         {
@@ -49,9 +51,7 @@ public class LiftMovement : MonoBehaviour
         }
     }
 
-
-
-    public void LiftUp() // done
+    public void LiftUp() 
     {
         if (engineController.GetForkliftEnginePower() == true)
         {
@@ -70,7 +70,7 @@ public class LiftMovement : MonoBehaviour
         }
     }
 
-    public void LiftDown() //done
+    public void LiftDown() 
     {
         if (engineController.GetForkliftEnginePower() == true)
         {

@@ -35,8 +35,6 @@ public class DrivingTestManager : MonoBehaviour
     [SerializeField] Image bronzeTrofyImage;
     [SerializeField] Image certificateImage;
 
-    [Header("Task Type")]
-    [SerializeField] TestTypeEnum testType;
     private void Start()
     {
         achivementUIPopup.SetActive(false);
