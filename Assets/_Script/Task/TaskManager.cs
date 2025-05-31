@@ -6,12 +6,12 @@ using System.Collections.Generic;
 
 public class TaskManager : MonoBehaviour
 {
-    public List<ForkliftTask> taskList; // drag ScriptableObjects here
-    public TextMeshProUGUI taskText;
-    public TextMeshProUGUI instructionText;
-    public int currentIndex = 0;
-    public int taskScore;
-    public int taskTotalScore;
+    [SerializeField] List<ForkliftTask> taskList; // List of Task ScriptableObjects 
+    [SerializeField] TextMeshProUGUI taskText;
+    [SerializeField] TextMeshProUGUI instructionText;
+    [SerializeField] int currentIndex = 0;
+    [SerializeField] int taskScore;
+    [SerializeField] int taskTotalScore;
 
     void Start()
     {
@@ -20,15 +20,12 @@ public class TaskManager : MonoBehaviour
         ShowCurrentTask();
     }
 
+
     public int GetTaskScore()
     {
         return taskScore;
     }
-    public int GetTaskTotalScore()
-    {
-        return taskTotalScore;
-    }
-
+   
     public int CheckWinningScore()
     {
         return  taskTotalScore - taskScore;
