@@ -23,10 +23,6 @@ public class ForkliftEngineController : MonoBehaviour
     public void SetForkliftEnginePower(bool powerOn)
     {
         isForkliftEngine = powerOn;
-        //if (isForkliftEngine)
-        //{
-        //    taskManager.TryCompleteTask(attemptedTask);
-        //}
         taskManager.TryCompleteTask(attemptedTask);
 
     }

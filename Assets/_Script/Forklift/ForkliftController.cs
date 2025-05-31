@@ -98,6 +98,7 @@ public class ForkliftController : MonoBehaviour
         Vector3 direction = isReverseGearOn ? -transform.forward : transform.forward; // Checks the gear and set the direction of forklift
         Vector3 movement = direction * currentSpeed * Time.fixedDeltaTime;
 
+        bool isMoving = movement != Vector3.zero;
         if (movement != Vector3.zero)
         {
             rb.MovePosition(rb.position + movement); // Set the movement of the forklift 
@@ -108,6 +109,8 @@ public class ForkliftController : MonoBehaviour
             Quaternion turnOffset = Quaternion.Euler(0f, rotation, 0f);
             rb.MoveRotation(rb.rotation * turnOffset); // Set the rotation of the forkliftas per the steering Input 
         }
+
+       
     }
 }
 

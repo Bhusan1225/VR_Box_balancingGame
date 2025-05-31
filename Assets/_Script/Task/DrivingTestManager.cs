@@ -102,10 +102,9 @@ public class DrivingTestManager : MonoBehaviour
                 task6Completed = true;
             }
 
-            if(testType == TestTypeEnum.DrivingTest)
-            {
-                AchivementPopup();
-            }
+            
+            AchivementPopup();
+            
             
 
         }
@@ -114,6 +113,7 @@ public class DrivingTestManager : MonoBehaviour
 
     void AchivementPopup()
     {
+        //SoundController.Instance.PlaySFX(SoundEffectEnum.Win);
         achivementUIPopup.SetActive(true);
         achivementTimingText.text = "Time:" + stopwatch.FormatTime(stopwatch.GetElapsedTime());
         taskScoreText.text = "Score: " + taskManager.GetTaskScore().ToString();
