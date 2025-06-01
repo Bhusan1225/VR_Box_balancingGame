@@ -3230,7 +3230,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 885d887426f184d43ab2ac8c4d1b4f82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4352,7 +4352,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 885d887426f184d43ab2ac8c4d1b4f82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5580,7 +5580,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 885d887426f184d43ab2ac8c4d1b4f82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13629,8 +13629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f2bdd5ea662604e991b2461b202cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retryButton: {fileID: 779857328}
-  lobbyButton: {fileID: 159335518}
 --- !u!4 &4139986010354587176
 Transform:
   m_ObjectHideFlags: 0
