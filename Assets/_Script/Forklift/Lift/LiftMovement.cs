@@ -10,7 +10,7 @@ public class LiftMovement : MonoBehaviour
     [SerializeField] Transform lift;
     [SerializeField] Transform originalLift;
 
-    [SerializeField] ForkliftEngineController engineController;
+    [SerializeField] ForkliftController engineController;
     [SerializeField] float moveIncrement = 0.1f;
 
     [Header("Horizontal Limits (X Axis)")]

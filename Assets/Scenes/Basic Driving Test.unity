@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 134552944}
   - component: {fileID: 134552943}
   m_Layer: 5
-  m_Name: Lock
+  m_Name: Lock text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 239166285}
   - component: {fileID: 239166284}
   m_Layer: 5
-  m_Name: Lift up/down
+  m_Name: Lift up/down text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3555168924325826053}
   - {fileID: 638944944}
   - {fileID: 1201476903}
   m_Father: {fileID: 0}
@@ -922,7 +921,7 @@ GameObject:
   - component: {fileID: 638944945}
   - component: {fileID: 638944946}
   m_Layer: 0
-  m_Name: Driving Test Line
+  m_Name: Driving Test WayPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1361,7 +1360,7 @@ GameObject:
   - component: {fileID: 818634769}
   - component: {fileID: 818634768}
   m_Layer: 5
-  m_Name: Key
+  m_Name: Key text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2640,7 +2639,7 @@ GameObject:
   - component: {fileID: 1340657676}
   - component: {fileID: 1340657675}
   m_Layer: 5
-  m_Name: Steering
+  m_Name: Steering text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3454,7 +3453,7 @@ GameObject:
   - component: {fileID: 1873171183}
   - component: {fileID: 1873171182}
   m_Layer: 5
-  m_Name: Gear Forword/ reverse
+  m_Name: 'Gear Forword/ reverse text '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4849,6 +4848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2473896056762869504}
+  - {fileID: 3555168924325826053}
   m_Father: {fileID: 9209061812172910502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &437397626530533702
@@ -9437,11 +9437,11 @@ Transform:
   m_GameObject: {fileID: 5219649486230918500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.837387, y: -11.698572, z: 50.252136}
+  m_LocalPosition: {x: 50.83739, y: -11.698572, z: 60.441135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 258079786}
+  m_Father: {fileID: 424302318819604840}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3576740082216705871
 MeshRenderer:
@@ -10807,7 +10807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lift: {fileID: 1416011992489753206}
   originalLift: {fileID: 2134156378}
-  engineController: {fileID: 8715755353459829567}
+  engineController: {fileID: 6361291999321834201}
   moveIncrement: 0.1
   maxRightX: 4
   maxLeftX: 4
@@ -12523,7 +12523,7 @@ GameObject:
   - component: {fileID: 3555168924325826053}
   - component: {fileID: 7845368235484924840}
   m_Layer: 0
-  m_Name: TaskManager
+  m_Name: TaskManagerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13735,8 +13735,8 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8715755353459829567}
-        m_TargetAssemblyTypeName: ForkliftEngineController, Assembly-CSharp
+      - m_Target: {fileID: 6361291999321834201}
+        m_TargetAssemblyTypeName: ForkliftController, Assembly-CSharp
         m_MethodName: SetForkliftEnginePower
         m_Mode: 6
         m_Arguments:
@@ -14103,7 +14103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745254083742c6a428367e14d7d3d80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engineController: {fileID: 8715755353459829567}
   rightTrigger: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   leftTrigger: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   maxSpeed: 10
@@ -14114,6 +14113,7 @@ MonoBehaviour:
   gearLever: {fileID: 4583532014176209053}
   parkingBreakLever: {fileID: 6346749743918275470}
   taskManager: {fileID: 7845368235484924840}
+  attemptedTask1: {fileID: 11400000, guid: 284128121531fb74381292c545c1fcc9, type: 2}
   attemptedTask2: {fileID: 11400000, guid: 67af8144d0e00574f87fb87034ace8fc, type: 2}
   attemptedTask3: {fileID: 11400000, guid: 9d5204b0fb06a4b4487b8c640fb9392e, type: 2}
 --- !u!210 &6437291301113634380
@@ -15625,7 +15625,6 @@ GameObject:
   - component: {fileID: 7146634787855783826}
   - component: {fileID: 4308621307964412633}
   - component: {fileID: 4738176605001244379}
-  - component: {fileID: 8715755353459829567}
   - component: {fileID: 263206033533049573}
   m_Layer: 6
   m_Name: Forklift Engine
@@ -17284,21 +17283,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8715755353459829567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7290568137216235987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56dec67590366341bbb197668996095, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isForkliftEngine: 0
-  taskManager: {fileID: 7845368235484924840}
-  attemptedTask: {fileID: 11400000, guid: 284128121531fb74381292c545c1fcc9, type: 2}
 --- !u!1 &8734172815143708975
 GameObject:
   m_ObjectHideFlags: 0

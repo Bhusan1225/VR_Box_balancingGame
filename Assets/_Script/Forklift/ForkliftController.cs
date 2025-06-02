@@ -9,10 +9,10 @@ using Unity.IO.LowLevel.Unsafe;
 public class ForkliftController : MonoBehaviour
 {
     [Header("Engine & Input")]
-    [SerializeField] ForkliftEngineController engineController;
     public InputActionReference rightTrigger; // Right hand trigger
     public InputActionReference leftTrigger;  // Left hand trigger
-
+    private bool isForkliftEngine;
+    
     [Header("Movement Settings")]
     [SerializeField] float maxSpeed = 5f;
     [SerializeField] float acceleration = 2f;
@@ -29,9 +29,9 @@ public class ForkliftController : MonoBehaviour
     [SerializeField] XRLever parkingBreakLever;
     private bool isReverseGearOn = false;
     
-   
     [Header("Task")]
     [SerializeField] TaskManager taskManager;
+    [SerializeField] ForkliftTask attemptedTask1; 
     [SerializeField] ForkliftTask attemptedTask2;
     [SerializeField] ForkliftTask attemptedTask3;
     private bool task2Completed = false;
@@ -48,7 +48,7 @@ public class ForkliftController : MonoBehaviour
 
      void Update()
     {
-        if (!engineController.GetForkliftEnginePower() || !parkingBreakLever.value)
+        if (!isForkliftEngine || !parkingBreakLever.value)
         {
             inputValue = 0f;
             return;
@@ -86,6 +86,17 @@ public class ForkliftController : MonoBehaviour
         }
     }
 
+    public bool GetForkliftEnginePower()
+    {
+        return isForkliftEngine;
+    }
+
+    public void SetForkliftEnginePower(bool powerOn)
+    {
+        isForkliftEngine = powerOn;
+        taskManager.TryCompleteTask(attemptedTask1);
+
+    }
     void HandleGearStatus()
     {
         isReverseGearOn = gearLever.value;
