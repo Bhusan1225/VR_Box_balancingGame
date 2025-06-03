@@ -162,6 +162,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.VR_Box_balancingGame
+    Standalone: com.DefaultCompany.VR-Box-balancingGame
   buildNumber:
     Standalone: 0
     VisionOS: 0

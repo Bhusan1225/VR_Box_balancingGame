@@ -104,12 +104,13 @@ public class ForkliftController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float targetSpeed = inputValue * maxSpeed;
-        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.fixedDeltaTime * (inputValue > 0 ? acceleration : deceleration));
+        float targetSpeed = inputValue * maxSpeed; // trigger value 
+        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.fixedDeltaTime * (inputValue > 0 ? acceleration : deceleration)); // speed maintain
+        
         Vector3 direction = isReverseGearOn ? -transform.forward : transform.forward; // Checks the gear and set the direction of forklift
         Vector3 movement = direction * currentSpeed * Time.fixedDeltaTime;
 
-        bool isMoving = movement != Vector3.zero;
+        
         if (movement != Vector3.zero)
         {
             rb.MovePosition(rb.position + movement); // Set the movement of the forklift 
